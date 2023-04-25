@@ -1,0 +1,42 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+
+    <form action="{% url 'upload_music' %}" method='POST' enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if errors %}
+            {% for error in errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error | escape }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        <div class="mb-3">
+            <label for="title" class="form-label">Title of Music</label>
+            <input type="text" name="title" class="form-control" id="title" placeholder="name of music" required>
+        </div>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Default file input example</label>
+            <input class="form-control" name="music-file" type="file" id="formFile" required>
+        </div>
+        <div class="mb-3">
+            <label for="text" class="form-label">mode of upload</label>
+            <select name="upload_mode">
+                <option>private</option>
+                <option>public</option>
+                <option>protected</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="shared-with" class="form-label">Share with (enter comma seperated emails). ! make sure to choose protected mode to apply these lists</label>
+            <input type="textarea" name="shared-with" class="form-control" id="shared-with" placeholder="ex. test@gmail.com, test1@gmail.com">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+    
+
+{% endblock %}
+
+

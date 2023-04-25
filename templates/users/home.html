@@ -1,0 +1,27 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+
+<a href="{% url 'upload_music' %}" class="btn btn-success mt-4"> + Upload New Music</a>
+<h2> My Uploads </h2>
+<div class="container-fluid" style="height:200px">
+    {% for upload in my_uploads %}
+        {{upload}},
+    {% endfor %}
+</div>
+
+<h2> Other's Public Uploads </h2>
+<div class="container-sm" style="height:200px">
+    {% for upload in others_uploads %}
+        {{upload}},
+    {% endfor %}
+</div>
+
+<h2> Shared with me </h2>
+<div class="container-fluid" style="height:200px">
+    {% for upload in shared_with_me %}
+        {{upload}},
+    {% endfor %}
+</div>
+
+{% endblock %}
